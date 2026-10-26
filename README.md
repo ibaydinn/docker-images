@@ -91,3 +91,22 @@ docker exec -it <container_name> bash
 
 ### base-ubuntu
 Basic ubuntu 22.04 based image with ssh server installed and configured. It is used as a base image for other images.
+
+### ubuntu-cpp
+Ubuntu 22.04 C++ development image based on `base-ubuntu`. It includes GCC, Clang,
+CMake 4.x from Kitware's hosted Ubuntu repository, Ninja, GDB, LLDB, Valgrind,
+Cppcheck, and Git.
+
+Build it after building or pulling the base image:
+
+```sh
+docker pull ghcr.io/ibaydinn/docker-images/base-ubuntu:latest
+docker build \
+    --build-arg USERNAME=developer \
+    -t ubuntu-cpp \
+    images/ubuntu-cpp
+```
+
+`USERNAME` must match the user configured in the base image. If the base image
+was built with a custom username, pass the same value when building
+`ubuntu-cpp`.
